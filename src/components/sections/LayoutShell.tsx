@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Header } from "@/components/Header";
 
@@ -9,6 +9,26 @@ type LayoutShellProps = {
 };
 
 export function LayoutShell({ children }: LayoutShellProps) {
+  const [booting, setBooting] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setBooting(false), 700);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (booting) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-black text-zinc-50">
+        <div className="relative flex flex-col items-center gap-4">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-emerald-400/70 border-t-transparent" />
+          <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500">
+            Loading portfolio
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black text-zinc-50">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(120,255,214,0.08),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(148,163,184,0.14),_transparent_56%)]" />

@@ -76,11 +76,11 @@ export const experience: ExperienceItem[] = [
     type: "Full Time",
     period: "September 2023 – Present",
     highlights: [
-      "Led development of iOS and Android applications from concept to deployment, ensuring optimal performance.",
-      "Integrated a native customer support system across iOS and Android versions.",
-      "Developed secure data storage mechanisms for persistent application logic.",
-      "Incorporated user feedback into iterative product improvements.",
-      "Integrated application process APIs to maintain and enhance core functionality.",
+      "Own end‑to‑end development of the Gigbanc mobile apps on iOS and Android, from new feature ideas through to App Store and Play Store releases.",
+      "Work closely with product and design to turn business requirements into simple mobile flows that feel natural for non‑technical users.",
+      "Integrated in‑app customer support and notifications so users can get help and key updates without leaving the app.",
+      "Implemented secure local data storage and API integrations to keep sensitive information safe while still feeling fast and responsive.",
+      "Use crash reports, analytics, and direct user feedback to prioritise fixes and improvements that have the biggest impact on day‑to‑day usage.",
     ],
   },
   {
@@ -90,10 +90,10 @@ export const experience: ExperienceItem[] = [
     type: "Contract",
     period: "April 2023 – April 2024",
     highlights: [
-      "Collaborated closely with designers to ship visually appealing, intuitive interfaces that improved engagement.",
-      "Applied agile methodologies to streamline development, accelerating delivery timelines and collaboration.",
-      "Implemented efficient code practices and regular code reviews to optimize app performance and reduce load times.",
-      "Integrated Paystack payment gateway and secure transaction flows for the e-commerce system.",
+      "Turned Figma designs into production‑ready Flutter and React Native screens that matched the brand and felt familiar to everyday users.",
+      "Collaborated with designers and backend engineers in an agile setup, breaking work into small, shippable pieces so the team could see progress every sprint.",
+      "Integrated Paystack payments and secure checkout flows so customers could pay with cards and bank transfers without leaving the app.",
+      "Focused on performance on low‑ to mid‑range Android devices, reducing jank and improving perceived load times with code‑level optimisations.",
     ],
   },
   {
@@ -103,9 +103,10 @@ export const experience: ExperienceItem[] = [
     type: "Contract",
     period: "June 2022 – January 2023",
     highlights: [
-      "Implemented robust security measures to safeguard user data and privacy both online (via API) and offline (via local storage).",
-      "Set up monitoring with Firebase Analytics to analyze app performance and identify bottlenecks.",
-      "Collaborated with managers, QA, designers, and backend engineers to hit milestones and deliver a high-quality application.",
+      "Helped build and maintain production mobile apps used daily by non‑technical users, focusing on clear flows and predictable behaviour.",
+      "Implemented security best practices around API calls and on‑device storage so that personal and financial data stayed protected.",
+      "Added Firebase Analytics and basic monitoring to track crashes, slow screens, and key events the product team cared about.",
+      "Worked closely with QA, designers, and backend engineers to triage issues quickly and keep releases stable.",
     ],
   },
   {
@@ -115,8 +116,9 @@ export const experience: ExperienceItem[] = [
     type: "Contract",
     period: "June 2021 – July 2022",
     highlights: [
-      "Implemented CI/CD pipelines to automate build and deployment, enabling quicker release cycles.",
-      "Used Git-based workflows to maintain codebase integrity and support efficient team collaboration.",
+      "Supported a small engineering team building mobile products for clients, contributing features, bug fixes, and UI polish.",
+      "Set up and maintained CI/CD pipelines so the team could ship test builds and production releases with fewer manual steps.",
+      "Introduced simple Git workflows (branching, pull requests, code reviews) that made collaboration and hand‑offs less stressful.",
     ],
   },
 ];
@@ -217,4 +219,3 @@ export const featuredProjects: ProjectItem[] = [
     ],
   },
 ];
-

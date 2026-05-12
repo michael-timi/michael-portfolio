@@ -80,7 +80,59 @@ cp .env.local.example .env.local
 
 ## Deployment
 
-The app is well-suited for deployment on platforms like Vercel, Netlify, or any environment that can run a Node.js server.
+The app is well-suited for deployment on platforms like Firebase Hosting, Vercel, Netlify, or any environment that can run a Node.js server.
+
+### Firebase Hosting (recommended for this setup)
+
+This project is preconfigured for Firebase Hosting using the Firebase web frameworks integration.
+
+1. **Create a Firebase project**
+   - Go to the Firebase console and create a new project.
+   - Note your **project ID** (e.g. `my-portfolio-site`).
+
+2. **Configure Firebase CLI**
+   - Install the CLI if you don’t have it:
+     ```bash
+     npm install -g firebase-tools
+     ```
+   - Log in:
+     ```bash
+     firebase login
+     ```
+
+3. **Set the default project ID**
+   - Edit `.firebaserc` and replace the placeholder with your real project ID:
+     ```json
+     {
+       "projects": {
+         "default": "your-firebase-project-id"
+       }
+     }
+     ```
+
+4. **Configure Firebase web app + environment variables**
+   - In the Firebase console, add a **Web app** to your project.
+   - Copy the Firebase config values into your local `.env.local` (based on `.env.local.example`):
+     - `NEXT_PUBLIC_FIREBASE_API_KEY`
+     - `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+     - `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+     - `NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET`
+     - `NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID`
+     - `NEXT_PUBLIC_FIREBASE_APP_ID`
+
+5. **Build and deploy**
+   - Build the Next.js app:
+     ```bash
+     npm run build
+     ```
+   - Deploy to Firebase Hosting:
+     ```bash
+     npm run deploy:firebase
+     ```
+
+Firebase Hosting will handle running the Next.js build and serving both static and dynamic pages.
+
+### Vercel
 
 On Vercel, you can:
 

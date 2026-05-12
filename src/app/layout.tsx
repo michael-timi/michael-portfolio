@@ -20,6 +20,17 @@ export const metadata: Metadata = {
     title: "Michael B. Oluwatimileyin | Mobile Developer",
     description:
       "Portfolio of Michael B. Oluwatimileyin — Mobile Developer. iOS & Android apps, Flutter, React Native. Available for remote roles.",
+    type: "website",
+    siteName: "Michael B. Oluwatimileyin — Mobile Developer",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Michael B. Oluwatimileyin | Mobile Developer",
+    description:
+      "Portfolio of Michael B. Oluwatimileyin — Mobile Developer building iOS & Android apps with Flutter, React Native, and native tools.",
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 

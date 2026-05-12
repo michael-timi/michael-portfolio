@@ -80,26 +80,6 @@ export function ContactSection() {
           </a>
         </motion.p>
 
-        {!firebaseReady && (
-          <motion.div
-            className="mt-6 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200"
-            variants={variants}
-          >
-            <p className="font-medium">Form backend not configured yet.</p>
-            <p className="mt-1 text-amber-200/90">
-              Add Firebase env vars to enable the form. Until then, please email
-              me directly:
-            </p>
-            <a
-              href={`mailto:${profile.email}`}
-              className="mt-3 inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-4 py-2 text-sm font-medium text-amber-100 transition hover:bg-amber-500/30"
-            >
-              <Mail className="h-4 w-4" />
-              {profile.email}
-            </a>
-          </motion.div>
-        )}
-
         <motion.form
           onSubmit={handleSubmit}
           className="mt-8 grid gap-4 sm:grid-cols-2"
@@ -116,6 +96,7 @@ export function ContactSection() {
             <input
               id="name"
               name="name"
+              required
               className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-50 outline-none transition focus:border-emerald-500 focus:bg-zinc-900 focus:ring-2 focus:ring-emerald-500/20"
               placeholder="Your name"
               autoComplete="name"
@@ -133,6 +114,7 @@ export function ContactSection() {
               id="email"
               name="email"
               type="email"
+              required
               className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-50 outline-none transition focus:border-emerald-500 focus:bg-zinc-900 focus:ring-2 focus:ring-emerald-500/20"
               placeholder="you@example.com"
               autoComplete="email"
@@ -150,6 +132,7 @@ export function ContactSection() {
               id="message"
               name="message"
               rows={4}
+              required
               className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-50 outline-none transition focus:border-emerald-500 focus:bg-zinc-900 focus:ring-2 focus:ring-emerald-500/20"
               placeholder="Tell me a bit about what you have in mind…"
             />
@@ -157,8 +140,8 @@ export function ContactSection() {
           <div className="flex flex-col gap-2 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
             <motion.button
               type="submit"
-              disabled={status === "submitting" || !firebaseReady}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-2.5 text-sm font-medium text-emerald-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-80"
+              disabled={status === "submitting"}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-2.5 text-sm font-medium text-emerald-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-80 sm:w-auto"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -175,6 +158,13 @@ export function ContactSection() {
               )}
             </motion.button>
             <div className="min-h-[1.5rem] flex items-center gap-2 text-xs text-zinc-400">
+              {status === "idle" && (
+                <p className="text-[11px] text-zinc-500">
+                  {firebaseReady
+                    ? "Messages are stored securely via Firebase and delivered straight to me."
+                    : "If the form fails for any reason, please use the email above and I&apos;ll respond there."}
+                </p>
+              )}
               {status === "success" && (
                 <motion.p
                   className="flex items-center gap-2 text-emerald-400"

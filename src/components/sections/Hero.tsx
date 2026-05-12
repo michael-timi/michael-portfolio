@@ -2,7 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Mail, Github, Linkedin, Sparkles, ArrowRight, Smartphone } from "lucide-react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Sparkles,
+  ArrowRight,
+  Smartphone,
+} from "lucide-react";
 import { profile } from "@/data/profile";
 
 const fadeUp = {
@@ -148,4 +155,3 @@ export function Hero() {
     </section>
   );
 }
-

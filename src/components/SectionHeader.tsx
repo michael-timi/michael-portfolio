@@ -1,20 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
 type SectionHeaderProps = {
   icon: LucideIcon;
   title: string;
   description?: string;
-  variants?: { hidden: object; visible: object };
+  variants?: Variants;
+};
+
+const defaultVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 };
 
 export function SectionHeader({
   icon: Icon,
   title,
   description,
-  variants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } },
+  variants = defaultVariants,
 }: SectionHeaderProps) {
   return (
     <motion.div className="flex items-start gap-4" variants={variants}>
