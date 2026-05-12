@@ -13,21 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Michael B. Oluwatimileyin | Mobile Developer",
+  title: "Michael B. Oluwatimileyin | Fullstack & Mobile Developer",
   description:
-    "Portfolio of Michael B. Oluwatimileyin — Mobile Developer specializing in iOS and Android apps with Flutter, React Native, and native tools. Available for remote roles.",
+    "Portfolio of Michael B. Oluwatimileyin — Fullstack Software Developer and Mobile Developer. Next.js, Node.js, TypeScript, Flutter, and React Native. Available for remote roles.",
   openGraph: {
-    title: "Michael B. Oluwatimileyin | Mobile Developer",
+    title: "Michael B. Oluwatimileyin | Fullstack & Mobile Developer",
     description:
-      "Portfolio of Michael B. Oluwatimileyin — Mobile Developer. iOS & Android apps, Flutter, React Native. Available for remote roles.",
+      "Fullstack engineer with a mobile background — Next.js, Node.js, TypeScript, Flutter, React Native. iOS, Android, and web, end‑to‑end.",
     type: "website",
-    siteName: "Michael B. Oluwatimileyin — Mobile Developer",
+    siteName: "Michael B. Oluwatimileyin — Fullstack & Mobile Developer",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Michael B. Oluwatimileyin | Mobile Developer",
+    title: "Michael B. Oluwatimileyin | Fullstack & Mobile Developer",
     description:
-      "Portfolio of Michael B. Oluwatimileyin — Mobile Developer building iOS & Android apps with Flutter, React Native, and native tools.",
+      "Fullstack engineer shipping Next.js + Node.js services and Flutter / React Native apps for iOS and Android.",
   },
   icons: {
     icon: "/favicon.ico",

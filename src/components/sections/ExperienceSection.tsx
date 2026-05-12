@@ -34,7 +34,7 @@ export function ExperienceSection() {
           <SectionHeader
             icon={Briefcase}
             title="Experience"
-            description="Teams I've helped ship production-grade mobile products with."
+            description="Teams I've helped ship production‑grade web, mobile, and API products with."
           />
         </motion.div>
 

@@ -22,7 +22,7 @@ export function Header() {
             Michael B. Oluwatimileyin
           </p>
           <p className="text-xs text-zinc-500">
-            Mobile Developer · Portfolio
+            Fullstack &amp; Mobile Developer · Portfolio
           </p>
         </div>
 

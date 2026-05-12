@@ -1,9 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { featuredProjects } from "@/data/profile";
-import { ExternalLink, FolderGit2, Smartphone, Plus } from "lucide-react";
+import { featuredProjects, type ProjectKind } from "@/data/profile";
+import {
+  ExternalLink,
+  FolderGit2,
+  Smartphone,
+  Plus,
+  Globe,
+  Server,
+  Layers,
+  type LucideIcon,
+} from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
+
+const iconForKind: Record<ProjectKind, LucideIcon> = {
+  mobile: Smartphone,
+  fullstack: Layers,
+  web: Globe,
+  backend: Server,
+};
 
 const list = {
   hidden: { opacity: 0 },
@@ -34,12 +50,14 @@ export function ProjectsSection() {
           <SectionHeader
             icon={FolderGit2}
             title="Projects"
-            description="Live products I've contributed to. Tap through to stores."
+            description="Live products and services I've contributed to — mobile apps, web tools, and APIs."
           />
         </motion.div>
 
         <div className="mt-8 grid gap-5 md:grid-cols-2">
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project) => {
+            const Icon = iconForKind[project.kind ?? "mobile"];
+            return (
             <motion.article
               key={project.name}
               className="group flex flex-col justify-between rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-5"
@@ -53,7 +71,7 @@ export function ProjectsSection() {
             >
               <div className="flex items-start gap-3">
                 <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-zinc-800/80 text-emerald-400 transition group-hover:bg-emerald-500/20">
-                  <Smartphone className="h-5 w-5" />
+                  <Icon className="h-5 w-5" />
                 </span>
                 <div>
                   <h3 className="text-sm font-semibold text-zinc-50 sm:text-base">
@@ -78,7 +96,8 @@ export function ProjectsSection() {
                 ))}
               </div>
             </motion.article>
-          ))}
+            );
+          })}
 
           <motion.article
             className="flex flex-col justify-between rounded-2xl border border-dashed border-zinc-700/80 bg-zinc-900/20 p-5"

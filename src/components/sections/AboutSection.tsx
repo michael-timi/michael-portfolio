@@ -71,14 +71,16 @@ export function AboutSection() {
           className="mt-6 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base"
           variants={fadeIn}
         >
-          I&apos;m a mobile engineer with a strong computer science foundation
-          from{" "}
+          I&apos;m a fullstack software engineer with a strong mobile background
+          and a computer science foundation from{" "}
           <span className="text-zinc-100">
             {profile.education.school}
           </span>{" "}
-          ({profile.education.degree}). I enjoy building reliable, user-focused
-          products and collaborating with designers, product managers, and
-          backend teams to ship high-quality applications.
+          ({profile.education.degree}). I enjoy owning features end‑to‑end —
+          from database schema and API design to React/Next.js dashboards and
+          the iOS &amp; Android screens users actually tap — and collaborating
+          closely with designers, product managers, and other engineers to ship
+          reliable, user‑focused products.
         </motion.p>
 
         <div className="mt-10 grid gap-8 md:grid-cols-3">
