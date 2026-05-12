@@ -2,7 +2,7 @@ export const profile = {
   name: "Michael B. Oluwatimileyin",
   role: "Fullstack Software Developer · Mobile Developer",
   email: "michtimiael@gmail.com",
-  github: "https://github.com/michaeltimi",
+  github: "https://github.com/michael-timi",
   linkedin: "https://linkedin.com/in/oluwatimileyin-michael-1a034b",
   location: "Remote · Nigeria / Global",
   summary:
@@ -177,7 +177,7 @@ export const featuredProjects: ProjectItem[] = [
     links: [
       {
         platform: "Case Study",
-        url: "https://github.com/michaeltimi",
+        url: "https://github.com/michael-timi",
       },
     ],
   },
@@ -267,18 +267,22 @@ export const featuredProjects: ProjectItem[] = [
     links: [
       {
         platform: "GitHub",
-        url: "https://github.com/michaeltimi",
+        url: "https://github.com/michael-timi",
       },
     ],
   },
   {
-    name: "DevPortfolio Starter",
-    role: "Side project · Next.js 15 + Tailwind + Framer Motion",
+    name: "Michael Portfolio",
+    role: "Personal site · Next.js 16 + Tailwind + Framer Motion + Firebase Hosting",
     kind: "web",
     links: [
       {
+        platform: "Live",
+        url: "https://michael-portfolio-25dea.web.app",
+      },
+      {
         platform: "GitHub",
-        url: "https://github.com/michaeltimi",
+        url: "https://github.com/michael-timi/michael-portfolio",
       },
     ],
   },
