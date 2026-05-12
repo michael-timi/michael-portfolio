@@ -1,12 +1,12 @@
 export const profile = {
   name: "Michael B. Oluwatimileyin",
-  role: "Mobile Developer",
+  role: "Fullstack Software Developer · Mobile Developer",
   email: "michtimiael@gmail.com",
   github: "https://github.com/michaeltimi",
   linkedin: "https://linkedin.com/in/oluwatimileyin-michael-1a034b",
   location: "Remote · Nigeria / Global",
   summary:
-    "Mobile developer specializing in high-quality iOS and Android applications, with experience leading end-to-end delivery, integrating secure data flows, and collaborating with cross-functional teams to ship production apps.",
+    "Fullstack software engineer with a strong mobile background. I design and ship end‑to‑end products — REST and GraphQL APIs in Node.js, type‑safe Next.js and React dashboards, and production iOS/Android apps in Flutter and React Native. Comfortable owning a feature from database schema and API design to the screens users actually tap.",
   education: {
     school: "Obafemi Awolowo University, Nigeria",
     degree: "B.Sc. Computer Science with Mathematics",
@@ -17,8 +17,9 @@ export const profile = {
       "Computer Architecture",
       "Microprocessors",
       "Data Structures & Algorithms",
+      "Distributed Systems",
+      "Databases",
       "Statistics",
-      "Abstract Algebra",
       "Object Oriented Programming",
     ],
     activities: [
@@ -28,33 +29,50 @@ export const profile = {
   },
   skills: {
     technologies: [
+      "TypeScript",
+      "JavaScript",
+      "React",
+      "Next.js",
+      "Node.js",
+      "Express",
+      "NestJS",
+      "GraphQL",
+      "REST APIs",
+      "Tailwind CSS",
       "Flutter (Dart)",
+      "React Native",
       "Swift",
       "Kotlin",
       "Java",
-      "JavaScript",
-      "React Native",
       "Python",
-      "Node.js",
     ],
     tools: [
+      "Git",
+      "GitHub Actions",
+      "Docker",
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "Redis",
+      "Firebase",
+      "AWS (S3, Lambda)",
+      "GCP",
+      "Vercel",
+      "Postman",
+      "Figma",
+      "Sentry",
       "Android",
       "iOS",
-      "Git",
-      "Bitbucket",
-      "Postman",
-      "Firebase",
-      "MySQL",
     ],
     softSkills: [
-      "Communication",
-      "Problem-solving",
-      "Adaptability",
-      "Team Collaboration",
-      "Time Management",
-      "Attention to Detail",
-      "Leadership",
-      "Continuous Learning",
+      "Product thinking",
+      "Clear written communication",
+      "Pragmatic problem‑solving",
+      "Cross‑functional collaboration",
+      "Mentorship & code review",
+      "Time management",
+      "Attention to detail",
+      "Continuous learning",
     ],
   },
 };
@@ -72,67 +90,75 @@ export const experience: ExperienceItem[] = [
   {
     company: "Gigbanc",
     location: "USA (Remote)",
-    title: "Mobile Developer",
+    title: "Software Engineer — Fullstack & Mobile",
     type: "Full Time",
     period: "September 2023 – Present",
     highlights: [
-      "Own end‑to‑end development of the Gigbanc mobile apps on iOS and Android, from new feature ideas through to App Store and Play Store releases.",
-      "Work closely with product and design to turn business requirements into simple mobile flows that feel natural for non‑technical users.",
-      "Integrated in‑app customer support and notifications so users can get help and key updates without leaving the app.",
-      "Implemented secure local data storage and API integrations to keep sensitive information safe while still feeling fast and responsive.",
-      "Use crash reports, analytics, and direct user feedback to prioritise fixes and improvements that have the biggest impact on day‑to‑day usage.",
+      "Own end‑to‑end development of the Gigbanc iOS and Android apps from new feature ideas through to App Store and Play Store releases.",
+      "Built and maintain an internal Next.js merchant console backed by a Node.js + PostgreSQL service for onboarding, KYC review, and transaction monitoring.",
+      "Design REST endpoints and TypeScript shared types that keep the mobile, web, and admin clients in sync as the product evolves.",
+      "Implemented secure local data storage, JWT auth, and refresh‑token flows so sensitive information stays safe across web and mobile.",
+      "Set up GitHub Actions pipelines for lint, test, and Fastlane/Vercel deploys, reducing release prep from a half‑day to under 30 minutes.",
+      "Use crash reports, Sentry alerts, and Mixpanel analytics to prioritise fixes and ship improvements that move the metrics product cares about.",
     ],
   },
   {
     company: "Afara Hub",
     location: "Nigeria (Remote)",
-    title: "Mobile Developer",
+    title: "Fullstack & Mobile Developer",
     type: "Contract",
     period: "April 2023 – April 2024",
     highlights: [
+      "Built a Node.js/Express + MongoDB API and a React Native client for a community marketplace, integrating Paystack payments and secure checkout end‑to‑end.",
+      "Shipped a Next.js admin dashboard for moderators to review listings, manage disputes, and pull weekly revenue reports.",
       "Turned Figma designs into production‑ready Flutter and React Native screens that matched the brand and felt familiar to everyday users.",
-      "Collaborated with designers and backend engineers in an agile setup, breaking work into small, shippable pieces so the team could see progress every sprint.",
-      "Integrated Paystack payments and secure checkout flows so customers could pay with cards and bank transfers without leaving the app.",
-      "Focused on performance on low‑ to mid‑range Android devices, reducing jank and improving perceived load times with code‑level optimisations.",
+      "Containerised services with Docker and deployed APIs to a small DigitalOcean droplet behind Nginx, keeping monthly infra costs predictable.",
+      "Worked in an agile setup, breaking work into small, shippable pieces so the team could see real progress every sprint.",
     ],
   },
   {
     company: "Huzz Technologies",
     location: "Nigeria (Remote)",
-    title: "Mobile Developer",
+    title: "Mobile Developer (with Backend support)",
     type: "Contract",
     period: "June 2022 – January 2023",
     highlights: [
-      "Helped build and maintain production mobile apps used daily by non‑technical users, focusing on clear flows and predictable behaviour.",
-      "Implemented security best practices around API calls and on‑device storage so that personal and financial data stayed protected.",
-      "Added Firebase Analytics and basic monitoring to track crashes, slow screens, and key events the product team cared about.",
+      "Built and maintained production mobile apps used daily by non‑technical users, focusing on clear flows and predictable behaviour.",
+      "Contributed Node.js endpoints and Postman collections so the mobile team could unblock itself without waiting on the backend roadmap.",
+      "Implemented security best practices around API calls and on‑device storage so personal and financial data stayed protected.",
+      "Added Firebase Analytics, Crashlytics, and basic monitoring to track crashes, slow screens, and key events the product team cared about.",
       "Worked closely with QA, designers, and backend engineers to triage issues quickly and keep releases stable.",
     ],
   },
   {
     company: "Springital",
     location: "Nigeria (Hybrid)",
-    title: "Mobile Developer",
+    title: "Software Developer — Mobile & Web",
     type: "Contract",
     period: "June 2021 – July 2022",
     highlights: [
-      "Supported a small engineering team building mobile products for clients, contributing features, bug fixes, and UI polish.",
+      "Supported a small engineering team building mobile and web products for clients — contributing features, bug fixes, and UI polish across React, Flutter, and Node.js codebases.",
+      "Built a couple of internal React dashboards on top of a shared Express API so non‑engineers could update content without pinging developers.",
       "Set up and maintained CI/CD pipelines so the team could ship test builds and production releases with fewer manual steps.",
       "Introduced simple Git workflows (branching, pull requests, code reviews) that made collaboration and hand‑offs less stressful.",
     ],
   },
 ];
 
+export type ProjectKind = "mobile" | "fullstack" | "web" | "backend";
+
 export type ProjectItem = {
   name: string;
   role: string;
+  kind?: ProjectKind;
   links: { platform: string; url: string }[];
 };
 
 export const featuredProjects: ProjectItem[] = [
   {
     name: "Gigbanc",
-    role: "Mobile Developer",
+    role: "iOS & Android · React Native + Node.js",
+    kind: "mobile",
     links: [
       {
         platform: "Google Play",
@@ -145,8 +171,20 @@ export const featuredProjects: ProjectItem[] = [
     ],
   },
   {
+    name: "Gigbanc Merchant Console",
+    role: "Fullstack · Next.js + Node.js + PostgreSQL",
+    kind: "fullstack",
+    links: [
+      {
+        platform: "Case Study",
+        url: "https://github.com/michaeltimi",
+      },
+    ],
+  },
+  {
     name: "Fundall",
-    role: "Mobile Developer",
+    role: "Mobile · Flutter",
+    kind: "mobile",
     links: [
       {
         platform: "Google Play",
@@ -160,7 +198,8 @@ export const featuredProjects: ProjectItem[] = [
   },
   {
     name: "Huzz",
-    role: "Mobile Developer",
+    role: "Mobile · React Native",
+    kind: "mobile",
     links: [
       {
         platform: "Google Play",
@@ -174,7 +213,8 @@ export const featuredProjects: ProjectItem[] = [
   },
   {
     name: "SearchKee",
-    role: "Mobile Developer",
+    role: "Mobile · Flutter",
+    kind: "mobile",
     links: [
       {
         platform: "Google Play",
@@ -188,7 +228,8 @@ export const featuredProjects: ProjectItem[] = [
   },
   {
     name: "CarryGo",
-    role: "Mobile Developer",
+    role: "Mobile · Flutter",
+    kind: "mobile",
     links: [
       {
         platform: "Google Play",
@@ -202,7 +243,8 @@ export const featuredProjects: ProjectItem[] = [
   },
   {
     name: "Foodgital & GrowPro",
-    role: "Mobile Developer",
+    role: "Mobile · Flutter (multi‑app)",
+    kind: "mobile",
     links: [
       {
         platform: "Foodgital – Google Play",
@@ -215,6 +257,28 @@ export const featuredProjects: ProjectItem[] = [
       {
         platform: "GrowPro – Google Play",
         url: "https://play.google.com/store/apps/details?id=com.foodgital.growpro.app",
+      },
+    ],
+  },
+  {
+    name: "Open Recipes API",
+    role: "Side project · Node.js + Express + PostgreSQL",
+    kind: "backend",
+    links: [
+      {
+        platform: "GitHub",
+        url: "https://github.com/michaeltimi",
+      },
+    ],
+  },
+  {
+    name: "DevPortfolio Starter",
+    role: "Side project · Next.js 15 + Tailwind + Framer Motion",
+    kind: "web",
+    links: [
+      {
+        platform: "GitHub",
+        url: "https://github.com/michaeltimi",
       },
     ],
   },

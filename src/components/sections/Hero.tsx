@@ -8,7 +8,7 @@ import {
   Linkedin,
   Sparkles,
   ArrowRight,
-  Smartphone,
+  Code2,
 } from "lucide-react";
 import { profile } from "@/data/profile";
 
@@ -52,10 +52,10 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          className="flex items-center justify-center gap-2 text-base font-medium uppercase tracking-[0.32em] text-zinc-400 sm:justify-start sm:text-sm"
+          className="flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-[0.28em] text-zinc-400 sm:justify-start sm:text-sm"
           variants={fadeUp}
         >
-          <Smartphone className="h-4 w-4 text-emerald-500/80" />
+          <Code2 className="h-4 w-4 text-emerald-500/80" />
           {profile.role}
         </motion.p>
 
@@ -86,7 +86,7 @@ export function Hero() {
             whileTap={{ scale: 0.98 }}
           >
             <Sparkles className="h-4 w-4 text-amber-400/80" />
-            View shipped apps
+            View shipped work
           </motion.a>
         </motion.div>
 
