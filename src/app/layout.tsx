@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { profile } from "@/data/profile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,26 +13,49 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
+
+const title = `${profile.name} | ${profile.role}`;
+
 export const metadata: Metadata = {
-  title: "Michael B. Oluwatimileyin | Fullstack & Mobile Developer",
-  description:
-    "Portfolio of Michael B. Oluwatimileyin — Fullstack Software Developer and Mobile Developer. Next.js, Node.js, TypeScript, Flutter, and React Native. Available for remote roles.",
+  metadataBase: new URL(profile.site),
+  title,
+  description: profile.summary,
   openGraph: {
-    title: "Michael B. Oluwatimileyin | Fullstack & Mobile Developer",
-    description:
-      "Fullstack engineer with a mobile background — Next.js, Node.js, TypeScript, Flutter, React Native. iOS, Android, and web, end‑to‑end.",
+    title,
+    description: profile.summary,
     type: "website",
-    siteName: "Michael B. Oluwatimileyin — Fullstack & Mobile Developer",
+    url: profile.site,
+    siteName: profile.name,
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Michael B. Oluwatimileyin | Fullstack & Mobile Developer",
-    description:
-      "Fullstack engineer shipping Next.js + Node.js services and Flutter / React Native apps for iOS and Android.",
+    card: "summary",
+    title,
+    description: profile.summary,
   },
-  icons: {
-    icon: "/favicon.ico",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#07080b",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: `${profile.role} — ${profile.focus}`,
+  email: profile.email,
+  url: profile.site,
+  sameAs: [profile.github, profile.linkedin],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: profile.education.school,
   },
+  knowsAbout: profile.skillGroups.flatMap((group) => group.items).slice(0, 16),
 };
 
 export default function RootLayout({
@@ -42,8 +66,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
       </body>
     </html>

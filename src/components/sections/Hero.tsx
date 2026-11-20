@@ -1,157 +1,169 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import {
-  Mail,
-  Github,
-  Linkedin,
-  Sparkles,
-  ArrowRight,
-  Code2,
-} from "lucide-react";
-import { profile } from "@/data/profile";
+import { highlights, profile, ticker } from "@/data/profile";
+import { easeOut, fadeUp } from "@/lib/motion";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
 };
 
 export function Hero() {
+  const reduce = useReducedMotion();
+  const loop = reduce ? ticker : [...ticker, ...ticker];
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const photoY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -36]);
+
   return (
-    <section
-      id="hero"
-      className="relative flex min-h-[70vh] flex-col items-center justify-center gap-10 overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-zinc-900 via-zinc-950 to-black px-6 py-16 text-center shadow-[0_0_60px_rgba(0,0,0,0.6)] sm:px-10 sm:py-20 md:flex-row md:items-center md:justify-between md:text-left"
-    >
-      {/* Subtle grid background */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:48px_48px]" />
-
-      <motion.div
-        className="relative space-y-6 md:max-w-xl"
-        initial="hidden"
-        animate="visible"
-        transition={{ staggerChildren: 0.12 }}
-      >
-        <motion.p
-          className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-emerald-200"
-          variants={fadeUp}
+    <section id="top" ref={sectionRef} className="relative scroll-mt-28 pt-6 sm:pt-10">
+      <div className="relative lg:grid lg:grid-cols-[minmax(0,1.12fr)_minmax(16rem,0.72fr)] lg:grid-rows-[auto_auto] lg:items-end">
+        <motion.div
+          className="relative z-10 lg:col-start-1 lg:row-start-1"
+          initial="hidden"
+          animate="visible"
+          variants={container}
         >
+          <motion.p
+            variants={fadeUp}
+            className="font-mono text-[11px] uppercase tracking-[0.28em] text-signal"
+          >
+            {profile.role}
+          </motion.p>
+          <h1 className="mt-5 font-display text-[clamp(3rem,6vw,5.45rem)] leading-[0.9] tracking-[-0.045em] text-ink">
+            <span className="block overflow-hidden">
+              <motion.span
+                className="block"
+                initial={reduce ? false : { y: "110%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.9, ease: easeOut }}
+              >
+                Michael B.
+              </motion.span>
+            </span>
+            <span className="mt-1 block overflow-hidden">
+              <motion.span
+                className="block italic text-ink/75"
+                initial={reduce ? false : { y: "110%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.9, delay: 0.12, ease: easeOut }}
+              >
+                Oluwatimileyin
+              </motion.span>
+            </span>
+          </h1>
           <motion.span
-            className="h-1.5 w-1.5 rounded-full bg-emerald-400"
-            animate={{ scale: [1, 1.3, 1], opacity: [1, 0.8, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden
+            className="mt-6 block h-px w-16 origin-left bg-signal"
+            initial={reduce ? false : { scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.7, delay: 0.45, ease: easeOut }}
           />
-          Available for remote roles
-        </motion.p>
-
-        <motion.h1
-          className="text-balance text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl md:text-6xl"
-          variants={fadeUp}
-        >
-          {profile.name}
-        </motion.h1>
-
-        <motion.p
-          className="flex items-center justify-center gap-2 text-xs font-medium uppercase tracking-[0.28em] text-zinc-400 sm:justify-start sm:text-sm"
-          variants={fadeUp}
-        >
-          <Code2 className="h-4 w-4 text-emerald-500/80" />
-          {profile.role}
-        </motion.p>
-
-        <motion.p
-          className="max-w-xl text-balance text-sm text-zinc-400 sm:text-base"
-          variants={fadeUp}
-        >
-          {profile.summary}
-        </motion.p>
-
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-4 md:justify-start"
-          variants={fadeUp}
-        >
-          <motion.a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-zinc-50 px-6 py-2.5 text-sm font-medium text-zinc-900 transition hover:bg-white"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Let&apos;s work together
-            <ArrowRight className="h-4 w-4" />
-          </motion.a>
-          <motion.a
-            href="#projects"
-            className="inline-flex items-center gap-2 rounded-full border border-zinc-700 px-5 py-2 text-sm font-medium text-zinc-200 transition hover:border-zinc-500 hover:bg-zinc-900/40"
-            whileHover={{ scale: 1.03, borderColor: "rgba(113,113,122,0.8)" }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <Sparkles className="h-4 w-4 text-amber-400/80" />
-            View shipped work
-          </motion.a>
         </motion.div>
 
-        <motion.div
-          className="mt-4 flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-400 md:justify-start"
-          variants={fadeUp}
+        <motion.figure
+          className="relative z-20 mx-auto -mt-2 w-[min(100%,17.5rem)] lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:-mb-8 lg:ml-[-4.5rem] lg:mt-0 lg:w-[min(100%,24rem)] lg:max-w-none lg:justify-self-end"
+          style={{ y: photoY }}
         >
-          <motion.a
-            href={`mailto:${profile.email}`}
-            className="flex items-center gap-2 rounded-lg px-3 py-2 transition hover:bg-zinc-800/60 hover:text-zinc-200"
-            whileHover={{ y: -2 }}
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.18, ease: easeOut }}
           >
-            <Mail className="h-4 w-4 text-emerald-500/80" />
-            <span className="hidden sm:inline">{profile.email}</span>
-            <span className="sm:hidden">Email</span>
-          </motion.a>
-          <motion.a
-            href={profile.github}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 rounded-lg px-3 py-2 transition hover:bg-zinc-800/60 hover:text-zinc-200"
-            whileHover={{ y: -2 }}
-          >
-            <Github className="h-4 w-4 text-zinc-400" />
-            GitHub
-          </motion.a>
-          <motion.a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 rounded-lg px-3 py-2 transition hover:bg-zinc-800/60 hover:text-zinc-200"
-            whileHover={{ y: -2 }}
-          >
-            <Linkedin className="h-4 w-4 text-blue-400/80" />
-            LinkedIn
-          </motion.a>
-        </motion.div>
-      </motion.div>
+            <Image
+              src="/profile-cutout.png"
+              alt={`Portrait of ${profile.name}`}
+              width={537}
+              height={858}
+              priority
+              className="relative h-auto w-full"
+            />
+          </motion.div>
+        </motion.figure>
 
-      <motion.div
-        className="relative mt-4 flex justify-center md:mt-0"
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          y: 0,
-        }}
-        transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+        <motion.div
+          className="relative z-10 lg:col-start-1 lg:row-start-2"
+          initial="hidden"
+          animate="visible"
+          variants={container}
+        >
+          <motion.p variants={fadeUp} className="mt-6 max-w-xl text-lg leading-relaxed text-muted lg:mt-8">
+            {profile.hero}
+          </motion.p>
+          <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center gap-3">
+            <motion.a
+              href="#projects"
+              whileHover={reduce ? undefined : { y: -3 }}
+              whileTap={reduce ? undefined : { scale: 0.98 }}
+              className="inline-flex items-center rounded-full bg-signal px-5 py-2.5 text-sm text-paper transition hover:brightness-110"
+            >
+              Selected work
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={reduce ? undefined : { y: -3 }}
+              whileTap={reduce ? undefined : { scale: 0.98 }}
+              className="inline-flex items-center rounded-full border border-ink/20 px-5 py-2.5 text-sm transition-colors hover:border-ink"
+            >
+              Start a project
+            </motion.a>
+            <a
+              href={profile.cv}
+              download
+              className="inline-flex items-center px-2 py-2.5 text-sm text-muted transition hover:text-ink"
+            >
+              Download CV
+            </a>
+          </motion.div>
+          <motion.p
+            variants={fadeUp}
+            className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted"
+          >
+            {profile.now}
+          </motion.p>
+        </motion.div>
+      </div>
+
+      <motion.dl
+        className="relative z-30 mt-2 grid grid-cols-2 border-y border-ink/15 bg-paper md:grid-cols-4 lg:mt-0"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        variants={container}
       >
-        <motion.div
-          className="relative h-64 w-64 overflow-hidden rounded-3xl border border-zinc-700/80 bg-zinc-900/60 shadow-[0_24px_80px_rgba(0,0,0,0.9)] sm:h-72 sm:w-72 md:h-80 md:w-80"
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-          <Image
-            src="/profile.png"
-            alt={profile.name}
-            fill
-            className="object-cover"
-            priority
-          />
-        </motion.div>
-        <div className="pointer-events-none absolute -inset-x-10 -bottom-10 h-32 bg-gradient-to-t from-emerald-500/20 via-transparent to-transparent blur-3xl" />
-      </motion.div>
+        {highlights.map((item, index) => (
+          <motion.div
+            key={item.label}
+            variants={fadeUp}
+            className={`px-4 py-6 ${index % 2 === 0 ? "border-r border-ink/15 md:border-r-0" : ""} ${
+              index > 0 ? "md:border-l md:border-ink/15" : ""
+            } ${index > 1 ? "border-t border-ink/15 md:border-t-0" : ""}`}
+          >
+            <dt className="font-display text-4xl tracking-[-0.04em] text-ink sm:text-5xl">{item.value}</dt>
+            <dd className="mt-2 max-w-[14rem] text-sm leading-snug text-muted">{item.label}</dd>
+          </motion.div>
+        ))}
+      </motion.dl>
+
+      <div className="overflow-hidden border-b border-ink/15 py-4">
+        <div className={`flex gap-8 ${reduce ? "flex-wrap" : "ticker w-max"}`}>
+          {loop.map((item, index) => (
+            <span
+              key={`${item}-${index}`}
+              className="flex items-center gap-8 font-mono text-[11px] uppercase tracking-[0.22em] text-ink/70"
+            >
+              {item}
+              <span className="h-1 w-1 rounded-full bg-signal" aria-hidden />
+            </span>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

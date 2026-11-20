@@ -2,15 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Loader2, MessageCircle, Mail, User, MessageSquare, CheckCircle2 } from "lucide-react";
-import { submitContactMessage, isFirebaseConfigured } from "@/lib/firebase";
-import { profile } from "@/data/profile";
 import { SectionHeader } from "@/components/SectionHeader";
+import { profile } from "@/data/profile";
+import { isFirebaseConfigured, submitContactMessage } from "@/lib/firebase";
+import { fadeUp } from "@/lib/motion";
 
-const variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+const fieldClass =
+  "mt-2 w-full border-b border-ink/20 bg-transparent py-3 text-base text-ink outline-none transition placeholder:text-ink/30 focus:border-signal";
 
 export function ContactSection() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -41,150 +39,105 @@ export function ContactSection() {
       form.reset();
     } catch (err) {
       console.error(err);
-      setError(
-        "Something went wrong while sending your message. Please try again later.",
-      );
+      setError("Something went wrong while sending your message. Please try again, or email me directly.");
       setStatus("error");
     }
   }
 
   return (
-    <section
-      id="contact"
-      className="scroll-mt-24 rounded-3xl border border-zinc-800 bg-gradient-to-b from-zinc-950/80 via-zinc-950 to-black px-6 py-10 shadow-[0_0_40px_rgba(0,0,0,0.6)] sm:px-10 sm:py-12"
-    >
+    <section id="contact" className="mt-24 scroll-mt-28 border-t border-ink/15 pt-16 md:mt-32 md:pt-20">
       <motion.div
+        className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ staggerChildren: 0.08 }}
+        viewport={{ once: true, margin: "-80px" }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
       >
-        <motion.div variants={variants}>
+        <motion.div variants={fadeUp}>
           <SectionHeader
-            icon={MessageCircle}
-            title="Contact"
-            description="Have an opportunity or want to collaborate? Reach out below or email directly."
+            index="05 — Contact"
+            title="Tell me what you’re building."
+            description="Senior web roles, fullstack contracts, and products that need both a site and a mobile app."
           />
+          <ul className="mt-8 space-y-3 text-sm">
+            <li>
+              <a className="text-ink underline decoration-signal decoration-2 underline-offset-4" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
+            </li>
+            <li>
+              <a className="text-muted transition hover:text-ink" href={profile.github} target="_blank" rel="noreferrer">
+                github.com/michael-timi
+              </a>
+            </li>
+            <li>
+              <a className="text-muted transition hover:text-ink" href={profile.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a className="text-muted transition hover:text-ink" href={profile.cv} download>
+                Download CV
+              </a>
+            </li>
+            <li className="text-muted">{profile.location}</li>
+          </ul>
         </motion.div>
-        <motion.p
-          className="mt-4 max-w-2xl text-sm text-zinc-400 sm:text-base"
-          variants={variants}
-        >
-          Email me at{" "}
-          <a
-            href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-1.5 text-zinc-200 underline underline-offset-4 transition hover:text-emerald-400"
-          >
-            <Mail className="h-4 w-4" />
-            {profile.email}
-          </a>
-        </motion.p>
 
-        <motion.form
-          onSubmit={handleSubmit}
-          className="mt-8 grid gap-4 sm:grid-cols-2"
-          variants={variants}
-        >
-          <div className="sm:col-span-1">
-            <label
-              htmlFor="name"
-              className="flex items-center gap-2 text-xs font-medium text-zinc-300"
-            >
-              <User className="h-3.5 w-3.5 text-zinc-500" />
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              required
-              className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-50 outline-none transition focus:border-emerald-500 focus:bg-zinc-900 focus:ring-2 focus:ring-emerald-500/20"
-              placeholder="Your name"
-              autoComplete="name"
-            />
+        <motion.form variants={fadeUp} onSubmit={handleSubmit}>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div>
+              <label htmlFor="name" className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+                Name
+              </label>
+              <input id="name" name="name" required autoComplete="name" placeholder="Your name" className={fieldClass} />
+            </div>
+            <div>
+              <label htmlFor="email" className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                placeholder="you@example.com"
+                className={fieldClass}
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <label htmlFor="message" className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={5}
+                required
+                placeholder="The product, the role, or the problem."
+                className={fieldClass}
+              />
+            </div>
           </div>
-          <div className="sm:col-span-1">
-            <label
-              htmlFor="email"
-              className="flex items-center gap-2 text-xs font-medium text-zinc-300"
-            >
-              <Mail className="h-3.5 w-3.5 text-zinc-500" />
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-50 outline-none transition focus:border-emerald-500 focus:bg-zinc-900 focus:ring-2 focus:ring-emerald-500/20"
-              placeholder="you@example.com"
-              autoComplete="email"
-            />
-          </div>
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="message"
-              className="flex items-center gap-2 text-xs font-medium text-zinc-300"
-            >
-              <MessageSquare className="h-3.5 w-3.5 text-zinc-500" />
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              required
-              className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-900/80 px-4 py-2.5 text-sm text-zinc-50 outline-none transition focus:border-emerald-500 focus:bg-zinc-900 focus:ring-2 focus:ring-emerald-500/20"
-              placeholder="Tell me a bit about what you have in mind…"
-            />
-          </div>
-          <div className="flex flex-col gap-2 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
-            <motion.button
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <button
               type="submit"
               disabled={status === "submitting"}
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-2.5 text-sm font-medium text-emerald-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-80 sm:w-auto"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center rounded-full border border-ink/25 px-6 py-3 text-sm text-ink transition hover:border-ink disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {status === "submitting" ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Sending…
-                </>
-              ) : (
-                <>
-                  <Send className="h-4 w-4" />
-                  Send message
-                </>
-              )}
-            </motion.button>
-            <div className="min-h-[1.5rem] flex items-center gap-2 text-xs text-zinc-400">
-              {status === "idle" && (
-                <p className="text-[11px] text-zinc-500">
+              {status === "submitting" ? "Sending" : "Send message"}
+            </button>
+            <div className="min-h-5 text-xs text-muted">
+              {status === "idle" ? (
+                <p>
                   {firebaseReady
-                    ? "Messages are stored securely via Firebase and delivered straight to me."
-                    : "If the form fails for any reason, please use the email above and I&apos;ll respond there."}
+                    ? "Messages are stored in Firebase and come straight to me."
+                    : "If the form cannot send, use the email and I will reply there."}
                 </p>
-              )}
-              {status === "success" && (
-                <motion.p
-                  className="flex items-center gap-2 text-emerald-400"
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                >
-                  <CheckCircle2 className="h-4 w-4 flex-shrink-0" />
-                  Message sent. I&apos;ll get back to you soon.
-                </motion.p>
-              )}
-              {status === "error" && error && (
-                <motion.p
-                  className="text-red-400"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  {error}
-                </motion.p>
-              )}
+              ) : null}
+              {status === "success" ? <p className="text-ink">Message sent. I will get back to you soon.</p> : null}
+              {status === "error" && error ? <p className="text-signal">{error}</p> : null}
             </div>
           </div>
         </motion.form>
@@ -192,4 +145,3 @@ export function ContactSection() {
     </section>
   );
 }
-

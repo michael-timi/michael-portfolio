@@ -1,43 +1,19 @@
-"use client";
-
-import { motion, type Variants } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
-
 type SectionHeaderProps = {
-  icon: LucideIcon;
+  index: string;
   title: string;
   description?: string;
-  variants?: Variants;
 };
 
-const defaultVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-export function SectionHeader({
-  icon: Icon,
-  title,
-  description,
-  variants = defaultVariants,
-}: SectionHeaderProps) {
+export function SectionHeader({ index, title, description }: SectionHeaderProps) {
   return (
-    <motion.div className="flex items-start gap-4" variants={variants}>
-      <motion.span
-        className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl border border-zinc-700/80 bg-zinc-800/50 text-emerald-400"
-        whileHover={{ scale: 1.05, rotate: 5 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      >
-        <Icon className="h-5 w-5" />
-      </motion.span>
-      <div>
-        <h2 className="text-lg font-semibold tracking-tight text-zinc-50 sm:text-xl">
-          {title}
-        </h2>
-        {description && (
-          <p className="mt-1 max-w-2xl text-sm text-zinc-400">{description}</p>
-        )}
-      </div>
-    </motion.div>
+    <div className="max-w-2xl">
+      <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-signal">{index}</p>
+      <h2 className="mt-3 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-ink sm:text-6xl">
+        {title}
+      </h2>
+      {description ? (
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">{description}</p>
+      ) : null}
+    </div>
   );
 }

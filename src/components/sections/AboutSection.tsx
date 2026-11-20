@@ -1,113 +1,66 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, Wrench, Heart, GraduationCap, type LucideIcon } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import { profile } from "@/data/profile";
+import { fadeUp } from "@/lib/motion";
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
 };
-
-const pillContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.04, delayChildren: 0.1 },
-  },
-};
-
-const pill = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1 },
-};
-
-function SkillPills({ items, icon: Icon }: { items: string[]; icon: LucideIcon }) {
-  return (
-    <motion.ul
-      className="mt-3 flex flex-wrap gap-2"
-      variants={pillContainer}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      {items.map((item) => (
-        <motion.li key={item} variants={pill}>
-          <motion.span
-            className="inline-flex items-center gap-1.5 rounded-full border border-zinc-700/80 bg-zinc-800/50 px-3 py-1.5 text-xs text-zinc-300"
-            whileHover={{ scale: 1.05, borderColor: "rgba(52,211,153,0.4)", backgroundColor: "rgba(52,211,153,0.08)" }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          >
-            <Icon className="h-3.5 w-3.5 text-emerald-500/80" />
-            {item}
-          </motion.span>
-        </motion.li>
-      ))}
-    </motion.ul>
-  );
-}
 
 export function AboutSection() {
   return (
-    <section
-      id="about"
-      className="scroll-mt-24 rounded-3xl border border-zinc-800 bg-zinc-950/60 px-6 py-10 shadow-[0_0_40px_rgba(0,0,0,0.6)] sm:px-10 sm:py-12"
-    >
+    <section id="about" className="mt-24 scroll-mt-28 border-t border-ink/15 pt-16 md:mt-32 md:pt-20">
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ staggerChildren: 0.08 }}
+        viewport={{ once: true, margin: "-80px" }}
+        variants={container}
       >
-        <motion.div variants={fadeIn}>
+        <motion.div variants={fadeUp}>
           <SectionHeader
-            icon={GraduationCap}
-            title="About"
-            description="Background and what I work with."
+            index="02 — About"
+            title="Full stack, in practice."
+            description="A website, an API, and a mobile client are one product. I stay with it until all three agree."
           />
         </motion.div>
-        <motion.p
-          className="mt-6 max-w-2xl text-sm leading-relaxed text-zinc-400 sm:text-base"
-          variants={fadeIn}
-        >
-          I&apos;m a fullstack software engineer with a strong mobile background
-          and a computer science foundation from{" "}
-          <span className="text-zinc-100">
-            {profile.education.school}
-          </span>{" "}
-          ({profile.education.degree}). I enjoy owning features end‑to‑end —
-          from database schema and API design to React/Next.js dashboards and
-          the iOS &amp; Android screens users actually tap — and collaborating
-          closely with designers, product managers, and other engineers to ship
-          reliable, user‑focused products.
-        </motion.p>
 
-        <div className="mt-10 grid gap-8 md:grid-cols-3">
-          <motion.div variants={fadeIn}>
-            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-              <Code2 className="h-4 w-4 text-emerald-500/70" />
-              Technologies
-            </h3>
-            <SkillPills items={profile.skills.technologies} icon={Code2} />
+        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <motion.div variants={fadeUp} className="space-y-5 text-base leading-relaxed text-muted">
+            {profile.about.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </motion.div>
-          <motion.div variants={fadeIn}>
-            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-              <Wrench className="h-4 w-4 text-amber-500/70" />
-              Tools
-            </h3>
-            <SkillPills items={profile.skills.tools} icon={Wrench} />
-          </motion.div>
-          <motion.div variants={fadeIn}>
-            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-500">
-              <Heart className="h-4 w-4 text-rose-500/70" />
-              Soft Skills
-            </h3>
-            <SkillPills items={profile.skills.softSkills} icon={Heart} />
-          </motion.div>
+          <motion.ol variants={container} className="divide-y divide-ink/10 border-y border-ink/10">
+            {profile.principles.map((item, index) => (
+              <motion.li key={item.title} variants={fadeUp} className="grid grid-cols-[auto_1fr] gap-4 py-5">
+                <span className="font-mono text-[11px] text-signal">0{index + 1}</span>
+                <div>
+                  <h3 className="font-display text-2xl tracking-[-0.03em]">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">{item.detail}</p>
+                </div>
+              </motion.li>
+            ))}
+          </motion.ol>
+        </div>
+
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {profile.skillGroups.map((group) => (
+            <motion.div key={group.title} variants={fadeUp}>
+              <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-signal">{group.title}</h3>
+              <ul className="mt-4 space-y-1.5">
+                {group.items.map((item) => (
+                  <li key={item} className="skill-item border-b border-ink/10 py-1.5 text-sm text-ink/80">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </section>
   );
 }
-

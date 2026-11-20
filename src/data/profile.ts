@@ -1,12 +1,44 @@
 export const profile = {
   name: "Michael B. Oluwatimileyin",
-  role: "Fullstack Software Developer · Mobile Developer",
+  role: "Senior Fullstack Engineer",
+  focus: "Web & product",
   email: "michtimiael@gmail.com",
   github: "https://github.com/michael-timi",
-  linkedin: "https://linkedin.com/in/oluwatimileyin-michael-1a034b",
-  location: "Remote · Nigeria / Global",
+  linkedin: "https://www.linkedin.com/in/oluwatimileyin-michael/",
+  cv: "/michael-oluwatimileyin-cv.pdf",
+  site: "https://michael-portfolio-25dea.web.app",
+  location: "Remote",
+  now: "Web platforms, APIs, and the Gigbanc apps",
   summary:
-    "Fullstack software engineer with a strong mobile background. I design and ship end‑to‑end products — REST and GraphQL APIs in Node.js, type‑safe Next.js and React dashboards, and production iOS/Android apps in Flutter and React Native. Comfortable owning a feature from database schema and API design to the screens users actually tap.",
+    "Senior fullstack engineer and web developer. Next.js, TypeScript, Node, and Firebase on the web, plus production iOS and Android apps. Gigbanc is live at 100K+ installs.",
+  hero: "I design and ship the whole product: the website, the admin, the API, and the iOS and Android apps. TypeScript and Next.js are home base. Flutter is how the product lives in someone’s pocket.",
+  about: [
+    "I’m a fullstack engineer who treats the website as a product. Recent web work includes a Next.js commerce admin with Gemini tools, and a protected dashboard that shares a production Firebase backend with a Flutter app.",
+    "The other half is mobile. For five years I’ve taken iOS and Android apps from architecture to the stores. I currently own Gigbanc end to end — past 100K installs — in Flutter with Riverpod and Bloc, on typed APIs and secure on-device storage.",
+    "I studied Computer Science with Mathematics at Obafemi Awolowo University. I lead reviews, mentor, and sit with design and product until the release is real.",
+  ],
+  principles: [
+    {
+      title: "The web product",
+      detail:
+        "Next.js, TypeScript, and Firebase, from the public site to the admin that staff actually use.",
+    },
+    {
+      title: "The API contract",
+      detail:
+        "REST, typed errors, auth, and data rules that the website and the mobile apps can share.",
+    },
+    {
+      title: "The pocket client",
+      detail:
+        "Flutter and React Native when the product has to ship to the App Store and Google Play.",
+    },
+    {
+      title: "The release",
+      detail:
+        "GitHub Actions, Fastlane, and a review culture so shipping stays repeatable.",
+    },
+  ],
   education: {
     school: "Obafemi Awolowo University, Nigeria",
     degree: "B.Sc. Computer Science with Mathematics",
@@ -17,148 +49,194 @@ export const profile = {
       "Computer Architecture",
       "Microprocessors",
       "Data Structures & Algorithms",
-      "Distributed Systems",
-      "Databases",
+      "Programming",
       "Statistics",
-      "Object Oriented Programming",
-    ],
-    activities: [
-      "Google Developer Student Community",
-      "Open Source Community Africa",
+      "Abstract Algebra",
+      "Object-Oriented Programming",
     ],
   },
-  skills: {
-    technologies: [
-      "TypeScript",
-      "JavaScript",
-      "React",
-      "Next.js",
-      "Node.js",
-      "Express",
-      "NestJS",
-      "GraphQL",
-      "REST APIs",
-      "Tailwind CSS",
-      "Flutter (Dart)",
-      "React Native",
-      "Swift",
-      "Kotlin",
-      "Java",
-      "Python",
-    ],
-    tools: [
-      "Git",
-      "GitHub Actions",
-      "Docker",
-      "PostgreSQL",
-      "MongoDB",
-      "MySQL",
-      "Redis",
-      "Firebase",
-      "AWS (S3, Lambda)",
-      "GCP",
-      "Vercel",
-      "Postman",
-      "Figma",
-      "Sentry",
-      "Android",
-      "iOS",
-    ],
-    softSkills: [
-      "Product thinking",
-      "Clear written communication",
-      "Pragmatic problem‑solving",
-      "Cross‑functional collaboration",
-      "Mentorship & code review",
-      "Time management",
-      "Attention to detail",
-      "Continuous learning",
-    ],
-  },
+  skillGroups: [
+    {
+      title: "Web",
+      items: ["TypeScript", "JavaScript", "React", "Next.js", "HTML", "CSS", "Tailwind"],
+    },
+    {
+      title: "Backend",
+      items: [
+        "Node.js / Express",
+        "REST & JSON",
+        "OAuth / JWT",
+        "WebSockets",
+        "Python",
+        "Laravel-backed APIs",
+      ],
+    },
+    {
+      title: "Mobile",
+      items: [
+        "Flutter (Dart)",
+        "React Native",
+        "Riverpod",
+        "Bloc",
+        "Provider",
+        "Swift",
+        "Kotlin",
+        "Java",
+      ],
+    },
+    {
+      title: "Data & storage",
+      items: [
+        "SQL",
+        "PostgreSQL",
+        "MySQL",
+        "SQLite",
+        "MongoDB",
+        "Redis",
+        "Hive",
+        "Secure storage",
+        "Keychain / Keystore",
+      ],
+    },
+    {
+      title: "Cloud & delivery",
+      items: [
+        "Firebase Auth",
+        "Firestore",
+        "FCM",
+        "Crashlytics",
+        "Analytics",
+        "GitHub Actions",
+        "Fastlane",
+        "Docker",
+        "AWS (EC2, S3, IAM)",
+      ],
+    },
+    {
+      title: "AI in the product",
+      items: [
+        "Google Gemini",
+        "ElevenLabs",
+        "Flux via fal.ai",
+        "Google Veo",
+        "Structured outputs",
+        "Prompt pipelines",
+        "Cursor",
+        "GitHub Copilot",
+      ],
+    },
+  ],
 };
+
+export const highlights = [
+  { value: "5+", label: "Years shipping products" },
+  { value: "Web", label: "Next.js, TypeScript, Node" },
+  { value: "100K+", label: "Installs on Gigbanc" },
+  { value: "7", label: "Apps released to stores" },
+];
+
+export const ticker = [
+  "Next.js",
+  "TypeScript",
+  "React",
+  "Node.js",
+  "Firebase",
+  "PostgreSQL",
+  "Flutter",
+  "React Native",
+  "Gemini",
+  "REST",
+];
 
 export type ExperienceItem = {
   company: string;
   location: string;
   title: string;
-  type: string;
+  type?: string;
   period: string;
+  current?: boolean;
   highlights: string[];
 };
 
 export const experience: ExperienceItem[] = [
   {
     company: "Gigbanc",
-    location: "USA (Remote)",
-    title: "Software Engineer — Fullstack & Mobile",
-    type: "Full Time",
-    period: "September 2023 – Present",
+    location: "USA · Remote",
+    title: "Mobile Engineer, iOS & Android",
+    period: "Sep 2023 – Present",
+    current: true,
     highlights: [
-      "Own end‑to‑end development of the Gigbanc iOS and Android apps from new feature ideas through to App Store and Play Store releases.",
-      "Built and maintain an internal Next.js merchant console backed by a Node.js + PostgreSQL service for onboarding, KYC review, and transaction monitoring.",
-      "Design REST endpoints and TypeScript shared types that keep the mobile, web, and admin clients in sync as the product evolves.",
-      "Implemented secure local data storage, JWT auth, and refresh‑token flows so sensitive information stays safe across web and mobile.",
-      "Set up GitHub Actions pipelines for lint, test, and Fastlane/Vercel deploys, reducing release prep from a half‑day to under 30 minutes.",
-      "Use crash reports, Sentry alerts, and Mixpanel analytics to prioritise fixes and ship improvements that move the metrics product cares about.",
+      "Own end-to-end mobile architecture for the Gigbanc apps on iOS and Android, from product concept through store release.",
+      "Designed the state and navigation foundation in Flutter with Riverpod and Bloc, in a feature-first Clean Architecture.",
+      "Built secure persistence for application state and sensitive user data with encrypted local storage and platform keystores (Keychain / Keystore).",
+      "Integrated native in-app customer support on both platforms, removing a long-standing gap in the feedback loop.",
+      "Hardened REST integration with typed error contracts, retry, and offline handling so features stay reliable as the backend evolves.",
+      "Lead mobile code reviews, set coding standards, and mentor teammates on Flutter, architecture, and release hygiene.",
     ],
   },
   {
     company: "Afara Hub",
-    location: "Nigeria (Remote)",
-    title: "Fullstack & Mobile Developer",
+    location: "Nigeria · Remote",
+    title: "Mobile Engineer",
     type: "Contract",
-    period: "April 2023 – April 2024",
+    period: "Apr 2023 – Dec 2025",
     highlights: [
-      "Built a Node.js/Express + MongoDB API and a React Native client for a community marketplace, integrating Paystack payments and secure checkout end‑to‑end.",
-      "Shipped a Next.js admin dashboard for moderators to review listings, manage disputes, and pull weekly revenue reports.",
-      "Turned Figma designs into production‑ready Flutter and React Native screens that matched the brand and felt familiar to everyday users.",
-      "Containerised services with Docker and deployed APIs to a small DigitalOcean droplet behind Nginx, keeping monthly infra costs predictable.",
-      "Worked in an agile setup, breaking work into small, shippable pieces so the team could see real progress every sprint.",
+      "Partnered with design and product to turn UI/UX into polished mobile interfaces that improved engagement.",
+      "Kept an agile delivery rhythm with PMs and engineers that shortened cycle times and tightened feedback loops.",
+      "Standardized review checklists and performance patterns — lazy loading, build-time optimizations, and render-cost audits — that reduced screen load times.",
+      "Integrated Paystack into a secure end-to-end checkout, owning payment, callback, and reconciliation on the client.",
     ],
   },
   {
     company: "Huzz Technologies",
-    location: "Nigeria (Remote)",
-    title: "Mobile Developer (with Backend support)",
+    location: "Nigeria · Remote",
+    title: "Mobile Engineer",
     type: "Contract",
-    period: "June 2022 – January 2023",
+    period: "Jun 2022 – Jan 2023",
     highlights: [
-      "Built and maintained production mobile apps used daily by non‑technical users, focusing on clear flows and predictable behaviour.",
-      "Contributed Node.js endpoints and Postman collections so the mobile team could unblock itself without waiting on the backend roadmap.",
-      "Implemented security best practices around API calls and on‑device storage so personal and financial data stayed protected.",
-      "Added Firebase Analytics, Crashlytics, and basic monitoring to track crashes, slow screens, and key events the product team cared about.",
-      "Worked closely with QA, designers, and backend engineers to triage issues quickly and keep releases stable.",
+      "Hardened online and offline data handling across APIs and local storage so private data stayed protected and the app remained usable on poor connectivity.",
+      "Instrumented Firebase Analytics and used it to surface and remove UX bottlenecks in critical flows.",
+      "Coordinated with QA, design, backend, and leadership through structured release cycles so quality builds shipped on schedule.",
     ],
   },
   {
     company: "Springital",
-    location: "Nigeria (Hybrid)",
-    title: "Software Developer — Mobile & Web",
+    location: "Nigeria · Hybrid",
+    title: "Mobile Developer",
     type: "Contract",
-    period: "June 2021 – July 2022",
+    period: "Jun 2021 – Jul 2022",
     highlights: [
-      "Supported a small engineering team building mobile and web products for clients — contributing features, bug fixes, and UI polish across React, Flutter, and Node.js codebases.",
-      "Built a couple of internal React dashboards on top of a shared Express API so non‑engineers could update content without pinging developers.",
-      "Set up and maintained CI/CD pipelines so the team could ship test builds and production releases with fewer manual steps.",
-      "Introduced simple Git workflows (branching, pull requests, code reviews) that made collaboration and hand‑offs less stressful.",
+      "Automated builds and store releases with GitHub Actions and Fastlane, removing manual deployment steps and shortening release time.",
+      "Established Git branching and review conventions that improved traceability and how the team collaborated.",
     ],
   },
 ];
 
-export type ProjectKind = "mobile" | "fullstack" | "web" | "backend";
+export type ProjectKind = "mobile" | "ai" | "web";
 
 export type ProjectItem = {
   name: string;
-  role: string;
-  kind?: ProjectKind;
+  kind: ProjectKind;
+  also?: ProjectKind[];
+  status: string;
+  summary: string;
+  metrics?: string[];
+  stack?: string[];
+  featured?: boolean;
+  caseStudy?: { problem: string; shipped: string; result: string };
   links: { platform: string; url: string }[];
 };
 
-export const featuredProjects: ProjectItem[] = [
+export const projects: ProjectItem[] = [
   {
     name: "Gigbanc",
-    role: "iOS & Android · React Native + Node.js",
     kind: "mobile",
+    status: "Live · both stores",
+    featured: true,
+    summary:
+      "Fintech app I currently own end to end on iOS and Android. Flutter, Riverpod, and Bloc in a feature-first architecture, with encrypted on-device storage and a hardened API client. Actively maintained.",
+    metrics: ["100K+ installs", "4.6★ · 1,090+ Play reviews", "4.7★ on the App Store"],
+    stack: ["Flutter", "Riverpod", "Bloc", "REST", "Keychain / Keystore"],
     links: [
       {
         platform: "Google Play",
@@ -171,20 +249,12 @@ export const featuredProjects: ProjectItem[] = [
     ],
   },
   {
-    name: "Gigbanc Merchant Console",
-    role: "Fullstack · Next.js + Node.js + PostgreSQL",
-    kind: "fullstack",
-    links: [
-      {
-        platform: "Case Study",
-        url: "https://github.com/michael-timi",
-      },
-    ],
-  },
-  {
     name: "Fundall",
-    role: "Mobile · Flutter",
     kind: "mobile",
+    status: "Live · both stores",
+    summary:
+      "Personal finance and digital banking app, live on both stores and actively maintained.",
+    metrics: ["50K+ installs", "3.9★ · 690 Play reviews", "4.4★ · 270 App Store ratings"],
     links: [
       {
         platform: "Google Play",
@@ -197,44 +267,12 @@ export const featuredProjects: ProjectItem[] = [
     ],
   },
   {
-    name: "Huzz",
-    role: "Mobile · React Native",
+    name: "CarryGo Carrier",
     kind: "mobile",
+    status: "Live · App Store",
+    summary:
+      "Carrier-side logistics app for a Nigerian moving and delivery platform. The iOS version is live; the Android release has been retired.",
     links: [
-      {
-        platform: "Google Play",
-        url: "https://play.google.com/store/apps/details?id=com.app.huzz",
-      },
-      {
-        platform: "App Store",
-        url: "https://apps.apple.com/ng/app/huzz/id1596574133",
-      },
-    ],
-  },
-  {
-    name: "SearchKee",
-    role: "Mobile · Flutter",
-    kind: "mobile",
-    links: [
-      {
-        platform: "Google Play",
-        url: "https://play.google.com/store/apps/details?id=com.searchkee.apps",
-      },
-      {
-        platform: "App Store",
-        url: "https://apps.apple.com/ng/app/searchkee/id1658787073",
-      },
-    ],
-  },
-  {
-    name: "CarryGo",
-    role: "Mobile · Flutter",
-    kind: "mobile",
-    links: [
-      {
-        platform: "Google Play",
-        url: "https://play.google.com/store/apps/details?id=com.carrygo.rider",
-      },
       {
         platform: "App Store",
         url: "https://apps.apple.com/ng/app/carrygo-carrier-app/id1626480631",
@@ -242,48 +280,155 @@ export const featuredProjects: ProjectItem[] = [
     ],
   },
   {
-    name: "Foodgital & GrowPro",
-    role: "Mobile · Flutter (multi‑app)",
+    name: "Foodgital",
     kind: "mobile",
+    status: "Live · Google Play",
+    summary:
+      "Food and merchant marketplace, currently live on Google Play. The iOS listing has been retired.",
     links: [
       {
-        platform: "Foodgital – Google Play",
+        platform: "Google Play",
         url: "https://play.google.com/store/apps/details?id=com.foodgital",
       },
+    ],
+  },
+  {
+    name: "GrowPro",
+    kind: "mobile",
+    status: "Live · Google Play",
+    summary: "Merchant productivity companion to Foodgital, live on Google Play.",
+    links: [
       {
-        platform: "Foodgital – App Store",
-        url: "https://apps.apple.com/ng/app/foodgital/id6443846004",
-      },
-      {
-        platform: "GrowPro – Google Play",
+        platform: "Google Play",
         url: "https://play.google.com/store/apps/details?id=com.foodgital.growpro.app",
       },
     ],
   },
   {
-    name: "Open Recipes API",
-    role: "Side project · Node.js + Express + PostgreSQL",
-    kind: "backend",
+    name: "SearchKee",
+    kind: "mobile",
+    status: "Live · App Store",
+    summary:
+      "Buyer and seller discovery app shipped to the App Store. The Android version has been retired.",
     links: [
       {
-        platform: "GitHub",
-        url: "https://github.com/michael-timi",
+        platform: "App Store",
+        url: "https://apps.apple.com/ng/app/searchkee/id1658787073",
       },
     ],
   },
   {
-    name: "Michael Portfolio",
-    role: "Personal site · Next.js 16 + Tailwind + Framer Motion + Firebase Hosting",
+    name: "Huzz",
+    kind: "mobile",
+    status: "Retired",
+    summary:
+      "Earlier business app shipped to both stores during 2022–2023. Both listings have since been retired.",
+    links: [],
+  },
+  {
+    name: "Lizzy Fusion",
     kind: "web",
+    also: ["ai"],
+    status: "Web product",
+    featured: true,
+    summary:
+      "Next.js and Firebase storefront with two Gemini admin tools: one places a customer-uploaded dress on a faceless mannequin for catalogue heroes, and another drafts structured product metadata from that image. Typed client wrappers, security rules, and a WhatsApp checkout that snapshots orders to Firestore.",
+    caseStudy: {
+      problem:
+        "A dress photo from a customer is not a catalogue hero, and it is not a product listing.",
+      shipped:
+        "A Next.js and Firebase storefront, a Gemini tool that places the uploaded dress on a faceless mannequin, a second tool that drafts structured metadata from that image, and a WhatsApp checkout that writes the order to Firestore.",
+      result:
+        "The shop is live. One upload becomes the hero and the listing, and the order snapshot stays in Firestore behind the security rules.",
+    },
+    stack: ["Next.js 16", "React 19", "TypeScript", "Firebase", "Gemini"],
     links: [
-      {
-        platform: "Live",
-        url: "https://michael-portfolio-25dea.web.app",
-      },
+      { platform: "Live site", url: "https://lizzyfusion.vercel.app/" },
       {
         platform: "GitHub",
-        url: "https://github.com/michael-timi/michael-portfolio",
+        url: "https://github.com/michael-timi/lizzyfusion_website",
       },
     ],
   },
+  {
+    name: "History Without Walls",
+    kind: "ai",
+    status: "Side project",
+    summary:
+      "Python pipeline that turns a markdown script into a captioned 1920×1080 episode. Gemini storyboards scenes, ElevenLabs narrates with forced-alignment captions, Flux makes the stills, Veo cuts hero shots, and ffmpeg assembles the cut. Stage gates keep a 25-minute episode around $5–6 to iterate.",
+    stack: ["Python", "Gemini", "ElevenLabs", "Flux", "Veo", "ffmpeg"],
+    links: [
+      {
+        platform: "YouTube",
+        url: "https://www.youtube.com/@HistoryWithoutWalls",
+      },
+      {
+        platform: "GitHub",
+        url: "https://github.com/michael-timi/history_without_walls",
+      },
+    ],
+  },
+  {
+    name: "Covmerc Web",
+    kind: "web",
+    status: "Web product",
+    featured: true,
+    summary:
+      "Marketing site and protected admin on a production Firebase backend that already serves Flutter clients. Access is checked through custom claims, an admins document, and the user role. Firestore writes use field allowlists so the web and mobile contracts stay in sync.",
+    stack: ["Next.js 14", "TypeScript", "Tailwind", "Firebase", "GitHub Actions"],
+    links: [{ platform: "Live site", url: "https://convmerc-baeef.web.app/" }],
+  },
 ];
+
+export const certifications = [
+  {
+    name: "Introduction to Generative AI",
+    issuer: "Google Cloud",
+    year: "2026",
+    detail:
+      "Learning path and skill badge covering generative AI fundamentals, foundation models, and responsible AI.",
+  },
+  {
+    name: "ChatGPT Prompt Engineering for Developers",
+    issuer: "DeepLearning.AI",
+    year: "2026",
+    detail:
+      "Short course by Isa Fulford and Andrew Ng on prompt design, iterative prompting, and LLM-powered applications.",
+  },
+  {
+    name: "Building Systems with the ChatGPT API",
+    issuer: "DeepLearning.AI",
+    year: "2026",
+    detail:
+      "Chained LLM calls, multi-step reasoning, moderation, and evaluation patterns for production LLM features.",
+  },
+  {
+    name: "LangChain for LLM Application Development",
+    issuer: "DeepLearning.AI",
+    year: "2026",
+    detail:
+      "Composable LLM applications: prompt templates, chains, memory, retrieval, and agent patterns.",
+  },
+];
+
+export const leadership = [
+  {
+    name: "Open Source Community Africa",
+    role: "Member",
+    period: "Aug 2022 – present",
+  },
+  {
+    name: "Google Developer Student Community",
+    role: "Member",
+    period: "Jan 2018 – Aug 2020",
+  },
+];
+
+export const projectFilters = [
+  { id: "all", label: "All" },
+  { id: "mobile", label: "Mobile" },
+  { id: "ai", label: "AI" },
+  { id: "web", label: "Web" },
+] as const;
+
+export type ProjectFilter = (typeof projectFilters)[number]["id"];

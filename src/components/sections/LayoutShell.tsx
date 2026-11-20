@@ -1,54 +1,80 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { MotionConfig, motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 type LayoutShellProps = {
   children: ReactNode;
 };
 
-export function LayoutShell({ children }: LayoutShellProps) {
-  const [booting, setBooting] = useState(true);
+function PointerGlow() {
+  const reduce = useReducedMotion();
+  const x = useMotionValue(-400);
+  const y = useMotionValue(-400);
+  const springX = useSpring(x, { stiffness: 70, damping: 18, mass: 0.4 });
+  const springY = useSpring(y, { stiffness: 70, damping: 18, mass: 0.4 });
+  const [ready, setReady] = useState(false);
+  const seen = useRef(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setBooting(false), 700);
-    return () => clearTimeout(timeout);
-  }, []);
+    if (reduce) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    const move = (event: PointerEvent) => {
+      x.set(event.clientX);
+      y.set(event.clientY);
+      if (!seen.current) {
+        seen.current = true;
+        setReady(true);
+      }
+    };
+    window.addEventListener("pointermove", move);
+    return () => window.removeEventListener("pointermove", move);
+  }, [reduce, x, y]);
 
-  if (booting) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-black text-zinc-50">
-        <div className="relative flex flex-col items-center gap-4">
-          <div className="h-10 w-10 animate-spin rounded-full border-2 border-emerald-400/70 border-t-transparent" />
-          <p className="text-xs font-medium uppercase tracking-[0.28em] text-zinc-500">
-            Loading portfolio
-          </p>
-        </div>
-      </div>
-    );
-  }
+  if (reduce) return null;
 
   return (
-    <div className="min-h-screen bg-black text-zinc-50">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(120,255,214,0.08),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(148,163,184,0.14),_transparent_56%)]" />
-      <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col gap-10 px-4 pb-16 pt-6 sm:px-6 sm:pt-10 md:gap-12 md:pt-12 lg:px-8">
-        <Header />
-
-        <motion.main
-          className="flex flex-1 flex-col gap-8 md:gap-10"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          {children}
-        </motion.main>
-
-        <footer className="mt-4 border-t border-zinc-900 pt-4 text-xs text-zinc-500">
-          <p>© {new Date().getFullYear()} Michael B. Oluwatimileyin.</p>
-        </footer>
-      </div>
-    </div>
+    <motion.div
+      aria-hidden
+      className="pointer-events-none fixed left-0 top-0 z-30 hidden h-72 w-72 rounded-full bg-signal/25 blur-3xl md:block"
+      style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%", opacity: ready ? 1 : 0 }}
+    />
   );
 }
 
+export function LayoutShell({ children }: LayoutShellProps) {
+  return (
+    <MotionConfig reducedMotion="user">
+      <div className="relative min-h-screen bg-paper text-ink">
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top,rgba(52,211,153,0.09),transparent_46%),radial-gradient(ellipse_at_bottom,rgba(120,80,40,0.08),transparent_42%)]"
+        />
+        <PointerGlow />
+        <ScrollProgress />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-paper"
+        >
+          Skip to content
+        </a>
+        <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-5 sm:px-8">
+          <Header />
+          <motion.main
+            id="main"
+            className="flex-1 pb-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {children}
+          </motion.main>
+          <Footer />
+        </div>
+      </div>
+    </MotionConfig>
+  );
+}
