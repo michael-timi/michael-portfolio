@@ -46,6 +46,29 @@ function PointerGlow() {
 }
 
 export function LayoutShell({ children }: LayoutShellProps) {
+  const reduce = useReducedMotion();
+  const [booting, setBooting] = useState(true);
+
+  useEffect(() => {
+    if (reduce) {
+      setBooting(false);
+      return;
+    }
+    const timeout = window.setTimeout(() => setBooting(false), 900);
+    return () => window.clearTimeout(timeout);
+  }, [reduce]);
+
+  if (booting) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-paper text-ink">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-signal/70 border-t-transparent" />
+          <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-muted">Loading portfolio</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <MotionConfig reducedMotion="user">
       <div className="relative min-h-screen bg-paper text-ink">
